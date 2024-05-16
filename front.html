@@ -1,0 +1,39 @@
+<!--
+    사용자가 웹에 이미지를 넣고 사용 할 수 있게하는 인터페이스 화면 구성
+-->
+
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>번호판 식별 프로그램</title>
+</head>
+
+<body>
+    <h1>번호판 식별 프로그램</h1>
+    <input type="file" id="fileInput" accept="image/*">
+        <!--
+            type="file" 은 입력필드가 파일을 선택할 수 있도록 지정
+            사용자는 파일 시스템에서 이미지 파일 선택 가능.
+
+            accept="image/*" 은 파일 선택 대화상자에 표시되는 파일유형 제한.
+            "image/*" 사용해서 이미지 파일만 선택하도록 하기.
+            "image/jpeg, image/png" 처럼 특정 이미지 형식만 허용 가능.
+        -->
+
+    <button onclick="handleUpload()">업로드</button>
+
+    <div id="imageContainer">
+        <!-- Uploaded image will be displayed here -->
+    </div>
+
+    <div id="resultContainer">
+        <!-- Recognition result will be displayed here -->
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+
+</html>
