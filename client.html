@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number Plate Recognition</title>
+</head>
+<body>
+    <h1>Number Plate Recognition</h1>
+    <form id="uploadForm">
+        <input type="file" id="imageInput" accept="image/*">
+        <button type="submit">Upload</button>
+    </form>
+    <div id="result"></div>
+
+    <script>
+        const form = document.getElementById('uploadForm');
+        const resultDiv = document.getElementById('result');
+
+        form.addEventListener('submit', async (event) => {
+            event.preventDefault();
+
+            const formData = new FormData();
+            const imageFile = document.getElementById('imageInput').files[0];
+            formData.append('image', imageFile);
+
+            try {
+                const response = await fetch('/recognizePlate', {
+                    method: 'POST',
+                    body: formData
+                });
+                const data = await response.json();
+                resultDiv.innerHTML = `<p>Recognized Text: ${data.recognizedTexts}</p>`;
+            } catch (error) {
+                console.error('Error:', error);
+                resultDiv.innerHTML = `<p>Error occurred. Please try again.</p>`;
+            }
+        });
+    </script>
+</body>
+</html>
